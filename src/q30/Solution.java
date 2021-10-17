@@ -1,6 +1,5 @@
 package q30;
 
-import q17.ArrayListDemo;
 
 import java.util.ArrayList;
 import java.util.HashSet;
