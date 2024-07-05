@@ -1,5 +1,9 @@
 package q6;
 
+
+/**
+ * 设置一个Array<StringBuilder>,大小为行数，然后遍历字符串，按规律将字符放入对应的StringBuilder中，最后合并多个StringBuilder
+ */
 public class Solution {
     public static void main(String[] args) {
         String str = new Solution().convert("abcdefghigk",4);

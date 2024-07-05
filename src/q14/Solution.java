@@ -16,15 +16,15 @@ public class Solution {
                 break;
             }
             int newLength = Math.min(init.length(),strs[i].length());
-            String temp = "";
+            StringBuilder temp = new StringBuilder("");
             for (int j = 0; j <newLength ; j++) {
                 if(init.charAt(j)==strs[i].charAt(j)){
-                    temp+=init.charAt(j);
+                    temp.append(init.charAt(j));
                 }else{
                     break;
                 }
             }
-            init = temp;
+            init = temp.toString();
         }
 
         return init;
