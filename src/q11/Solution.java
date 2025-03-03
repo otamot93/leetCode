@@ -2,7 +2,7 @@ package q11;
 
 public class Solution {
     public static void main(String[] args) {
-        int maxArea = new Solution().maxArea(new int[]{1,2,3,4,3,2,1});
+        int maxArea = new Solution().maxArea(new int[]{1,8,6,2,5,4,8,3,7});
         System.out.println(maxArea);
     }
     public int maxArea(int[] height) {
@@ -22,4 +22,5 @@ public class Solution {
         }
         return max;
     }
+
 }

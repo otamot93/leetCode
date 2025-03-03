@@ -1,8 +1,13 @@
 package q20;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Solution {
     public static void main(String[] args) {
-        Boolean isValid = new Solution().isValid("]");
+        Boolean isValid = new Solution().isValid("[]");
         System.out.println(isValid);
     }
 
@@ -13,60 +18,29 @@ public class Solution {
      * @return
      */
     public boolean isValid(String s){
-        //声明一个暂存仓库，能满足后入先出简单点选用数组
-        char [] array = new char[s.length()];
-        int arrayLength = 0;
-        for (int i = 0; i <s.length() ; i++) {
-            char current = s.charAt(i);
-            switch(current){
-                case '[':{}
-                case '(':{}
-                case '{':{
-                    array[arrayLength] = current;
-                    arrayLength++;
-                    break;
-                }
-                case ']':{
-                    if(arrayLength==0){
+        // 申明一个右侧括号对应左侧括号的集合
+        Map<Character,Character>  map = new HashMap<>();
+        map.put(')','(');
+        map.put('}','{');
+        map.put(']','[');
+
+        Deque<Character> deque = new ArrayDeque<>();
+        for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                if(map.containsKey(c)){
+                    if(deque.size() == 0){
                         return false;
                     }
-                    if(array[arrayLength-1] == '['){
-                        arrayLength--;
-                    }else{
-                        array[arrayLength] = current;
-                        arrayLength++;
-                        //继续加
-                    }
-                    break;
+
+                   char firstElement =  deque.pop();
+                    // 如果栈顶数据不匹配，直接返回无效
+                   if(map.get(c) != firstElement){
+                       return false;
+                   }
+                }else{
+                    deque.push(c);
                 }
-                case ')':{
-                    if(arrayLength==0){
-                        return false;
-                    }
-                    if(array[arrayLength-1] == '('){
-                        arrayLength--;
-                    }else{
-                        array[arrayLength] = current;
-                        arrayLength++;
-                        //继续加
-                    }
-                    break;
-                }
-                case '}':{
-                    if(arrayLength==0){
-                        return false;
-                    }
-                    if(array[arrayLength-1] == '{'){
-                        arrayLength--;
-                    }else{
-                        array[arrayLength] = current;
-                        arrayLength++;
-                        //继续加
-                    }
-                    break;
-                }
-            }
         }
-        return arrayLength == 0;
+        return deque.size() == 0;
     }
 }
