@@ -1,4 +1,4 @@
-package q17;
+package q17_letter_combinations_of_a_phone_number;
 
 import java.util.Iterator;
 import java.util.LinkedList;
